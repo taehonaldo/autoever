@@ -1,4 +1,4 @@
-@font-face {
+/* @font-face {
 	font-display: swap;
 	font-family: Kia Signature Fix;
 	src: url(../fonts/KiaSignatureFixLight.woff2) format('woff2');
@@ -15,7 +15,7 @@
 	font-family: Kia Signature Fix;
 	src: url(../fonts/KiaSignatureFixBold.woff2) format('woff2');
 	font-weight: 600;
-}
+} */
 
 :root {
 	font-family: Kia Signature Fix, Arial, sans-serif, Hevetica;
