@@ -1,80 +1,97 @@
-import { useState } from 'react';
-import { Link } from 'react-router';
-import styled from 'styled-components';
+import styled from "styled-components";
+import { centerBox, rowBox } from "../styles/common.styled";
+import { useLocation, useNavigate } from "react-router";
+import logoImg from "../assets/icons/logo_wible_lg.svg";
+
+const menuItems = [
+  { path: "Guide", label: "서비스 소개" },
+  { path: "FAQ", label: "자주 묻는 질문" },
+  { path: "News", label: "새소식" },
+  { path: "Counsel", label: "상담문의" },
+];
 
 const Header = () => {
-	const [selected, setSelected] = useState('faq');
-	const menuItems = [
-		{ path: '/Guide', label: '서비스 소개' },
-		{ path: '/FAQ', label: '자주 묻는 질문' },
-		{ path: '/News', label: '새소식' },
-		{ path: '/Counsel', label: '상담문의' },
-	];
+  const location = useLocation();
+  const navigate = useNavigate();
 
-	return (
-		<HeaderContainer>
-			<LogoContainer>
-				<Logo>Wible</Logo>
-				<LogoSub>BIZ</LogoSub>
-			</LogoContainer>
-			<NavContainer>
-				{menuItems.map((item) => (
-					<NavItem
-						key={item.path}
-						$selected={selected === item.path}
-						onClick={() => setSelected(item.path)}
-					>
-						<Link to={item.path}>{item.label}</Link>
-					</NavItem>
-				))}
-			</NavContainer>
-		</HeaderContainer>
-	);
+  return (
+    <HeaderContainer>
+      <HeaderContents>
+        <Logo src={logoImg} onClick={() => navigate("/")} />
+        <NavContainer>
+          {menuItems.map((item) => (
+            <NavItem
+              key={item.path}
+              onClick={() => navigate(item.path)}
+              $selected={location.pathname.startsWith(item.path)}
+            >
+              {item.label}
+            </NavItem>
+          ))}
+        </NavContainer>
+      </HeaderContents>
+    </HeaderContainer>
+  );
 };
 
 const HeaderContainer = styled.header`
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 10px 20px;
-	background-color: #ffffff;
-	border-bottom: 1px solid #e5e5e5;
+  ${centerBox};
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5rem;
+  border-bottom: 1px solid #e5e5e5;
+
+  z-index: 2;
 `;
 
-const LogoContainer = styled.div`
-	display: flex;
-	align-items: baseline;
-	font-family: 'Arial', sans-serif;
+const HeaderContents = styled.div`
+  ${rowBox}
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--max-width);
+  padding: 0 3rem;
 `;
 
-const Logo = styled.div`
-	font-size: 24px;
-	font-weight: bold;
-	color: #001222;
-`;
-
-const LogoSub = styled.div`
-	font-size: 16px;
-	font-weight: normal;
-	margin-left: 4px;
-	color: #001222;
+const Logo = styled.img`
+  cursor: pointer;
 `;
 
 const NavContainer = styled.nav`
-	display: flex;
-	gap: 30px;
+  display: flex;
+  height: 100%;
+  gap: 2rem;
 `;
 
 const NavItem = styled.div<{ $selected: boolean }>`
-	position: relative;
-	font-size: 16px;
-	color: ${(props) => (props.$selected ? '#001222' : '#666666')};
-	font-weight: ${(props) => (props.$selected ? 'bold' : 'normal')};
-	cursor: pointer;
+  ${centerBox}
+  height: 100%;
+  position: relative;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
 
-	&:hover {
-		color: #001222;
-	}
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: ${(props) => (props.$selected ? "100%" : "0")}; /* 선택 시 100% */
+    height: 4px;
+    background-color: var(--min-900);
+    transition: width 0.4s var(--cubic-bezier-primary), opacity 0.4s ease;
+    opacity: ${(props) => (props.$selected ? "1" : "0")}; /* 선택 시 보임 */
+  }
+
+  &:hover {
+    ::after {
+      width: 100%; /* 호버 시 밑줄 확장 */
+      opacity: 0.4; /* 호버 시 약간 투명도 추가 */
+    }
+  }
 `;
 
 export default Header;
