@@ -64,8 +64,13 @@ const FAQContent = ({
           >
             <FAQHeaderContents>
               <FAQCategoryContainer>
-                {tab === "CONSULT" && <Category>{faq.categoryName}</Category>}
-                <RightArrow src={ArrowIcon} />
+                {tab === "CONSULT" && (
+                  <>
+                    <Category>{faq.categoryName}</Category>
+                    <RightArrow src={ArrowIcon} />
+                  </>
+                )}
+
                 <SubCategory>{faq.subCategoryName}</SubCategory>
               </FAQCategoryContainer>
               <Question>{faq.question}</Question>
@@ -199,7 +204,7 @@ const FAQAnswerContainer = styled.div<{
 }>`
   max-height: ${(props) => (props.$expanded ? `${props.$maxHeight}px` : "0")};
   overflow: hidden;
-  transition: max-height 0.6s ease;
+  transition: max-height 0.6s var(--cubic-bezier-primary);
 `;
 
 const FAQAnswer = styled.div`

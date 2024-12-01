@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { centerBox } from "../styles/common.styled";
 
-// TabItem 타입 정의
 export interface TabItem {
   label: string | JSX.Element;
   content?: JSX.Element;

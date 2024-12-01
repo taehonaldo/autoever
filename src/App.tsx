@@ -10,45 +10,54 @@ import Processes from "./layouts/Processes";
 import Spacing from "./components/ui/Spacing";
 import StoreLink from "./layouts/StoreLink";
 import FAB from "./layouts/FAB";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const App = () => {
+  const [useFullScreen, setUseFullScreen] = useState<boolean>(false);
   const $footer = useRef<HTMLDivElement | null>(null);
 
   return (
-    <AppContainer>
-      <Header />
+    <AppContainer $useFullScreen={useFullScreen}>
+      <Header
+        useFullScreen={useFullScreen}
+        setUseFullScreen={setUseFullScreen}
+      />
       <Contents>
-        <>
-          <Routes>
-            {routes.map((route) => (
-              <Route
-                key={route.path}
-                path={route.path}
-                element={route.element}
-              />
-            ))}
-          </Routes>
-          <Title>서비스 문의</Title>
-          <Reactions />
-          <Title>이용 프로세스 안내</Title>
-          <Processes />
-          <Spacing size={48} />
-          <StoreLink />
-        </>
+        <Routes>
+          {routes.map((route) => (
+            <Route key={route.path} path={route.path} element={route.element} />
+          ))}
+        </Routes>
+        <Title>서비스 문의</Title>
+        <Reactions />
+        <Title>이용 프로세스 안내</Title>
+        <Processes />
+        <Spacing size={48} />
+        <StoreLink />
       </Contents>
+      <FAB />
       <Footer ref={$footer} />
-      <FAB footerElement={$footer.current} />
     </AppContainer>
   );
 };
 
-const AppContainer = styled.div`
-  position: relative;
+const AppContainer = styled.div<{ $useFullScreen: boolean }>`
   ${columnBox};
   width: 100%;
   min-height: 100vh;
-  overflow-x: hidden;
+  height: 100vh;
+
+  ${(props) => {
+    if (props.$useFullScreen) {
+      return `
+        overflow-y: hidden;
+        overflow-x: visible;
+      `;
+    }
+  }}
+  /* overflow-x: visible;
+  overflow-y: ${(props) => (props.$useFullScreen ? "hidden" : "auto")}; */
+  height: ${(props) => (props.$useFullScreen ? "100vh" : "auto")};
 `;
 
 const Title = styled.div`

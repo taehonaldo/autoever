@@ -2,20 +2,26 @@ import styled from "styled-components";
 import { pageBox } from "../styles/common.styled";
 
 interface ContentsProps {
-  children: JSX.Element;
+  children: React.ReactNode;
 }
 
 const Contents = ({ children }: ContentsProps) => {
-  return <ContentsWrapper>{children}</ContentsWrapper>;
+  return (
+    <ContentsWrapper>
+      <ContentsContainer>{children}</ContentsContainer>
+    </ContentsWrapper>
+  );
 };
 
 const ContentsWrapper = styled.div`
+  position: relative;
   ${pageBox};
+  padding: 0 var(--side-padding) var(--bottom-padding);
+`;
+
+const ContentsContainer = styled.div`
   max-width: 1240px;
   margin: 0 auto;
-  padding: 0 var(--side-padding) var(--bottom-padding);
-
-  position: relative;
 `;
 
 export default Contents;

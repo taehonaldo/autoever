@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { centerBox, columnBox, Row, rowBox } from "../styles/common.styled";
+import { centerBox, columnBox, rowBox } from "../styles/common.styled";
 import Spacing from "../components/ui/Spacing";
 import googleLogo from "../assets/icons/logo_googleplay.svg";
 import appleLogo from "../assets/icons/logo_appstore.svg";
@@ -23,7 +23,7 @@ const StoreLink = () => {
       <Title>
         <strong>위블 비즈 App</strong>&nbsp;지금 만나보세요!
       </Title>
-      <Spacing size={24} />
+      <Spacing size={4} />
       <StoresContainer>
         {store.map((el) => (
           <Store onClick={() => window.open(el.url)} key={el.name}>
@@ -51,11 +51,16 @@ const Title = styled.span`
   strong {
     color: var(--mint-900);
   }
+
+  @media (min-width: 1440px) {
+    font-size: 32px;
+    margin-bottom: 32px;
+  }
 `;
 
 const StoresContainer = styled.div`
   ${rowBox}
-  gap: 16px;
+  gap: 32px;
 
   @media (max-width: 744px) {
     flex-direction: column;
@@ -76,6 +81,12 @@ const Store = styled.div`
 
   span {
     font-weight: 600;
+  }
+
+  @media (min-width: 1440px) {
+    font-size: 18px;
+    height: 64px;
+    width: 392px;
   }
 
   @media (max-width: 744px) {

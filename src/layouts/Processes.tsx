@@ -111,12 +111,14 @@ const StepContent = styled.div`
 const StepTitle = styled.div`
   position: relative;
   font-weight: bold;
+  font-size: 16px;
   color: var(--midnight-900);
   margin-bottom: 0.5rem;
 `;
 
 const StepDescription = styled.div`
-  color: var(--gray-500);
+  font-size: 14px;
+  color: var(--gray-700);
 `;
 
 const StepArrow = styled.img`

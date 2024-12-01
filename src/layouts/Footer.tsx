@@ -13,11 +13,16 @@ const Footer = forwardRef<HTMLDivElement>((_, ref) => {
         </LogoSection>
         <InfoAndLinks>
           <LinksSection>
-            <FooterLink href="/privacy-policy">개인정보 처리방침</FooterLink>
+            <FooterLink href="/privacy-policy" style={{ fontWeight: "bold" }}>
+              개인정보 처리방침
+            </FooterLink>
             <FooterLink href="/terms-of-service">이용약관</FooterLink>
           </LinksSection>
           <InfoSection>
-            <span>서울특별시 서초구 헌릉로 12 기아㈜</span>
+            <span>
+              서울특별시 서초구 헌릉로 12
+              <span style={{ marginLeft: "12px" }}>기아㈜</span>
+            </span>
             <span>대표: 송호성, 최준영</span>
             <span>사업자등록번호: 119-81-02316</span>
             <span>통신판매번호: 2006-07935</span>
@@ -33,7 +38,6 @@ const Footer = forwardRef<HTMLDivElement>((_, ref) => {
 });
 
 const FooterContainer = styled.footer`
-  ${centerBox}
   height: var(--footer-height);
   width: 100%;
   background-color: var(--midnight-900);
@@ -41,15 +45,30 @@ const FooterContainer = styled.footer`
   padding: 0 var(--side-padding);
 
   margin-top: auto;
+
+  @media (min-width: 1024px) {
+    display: flex;
+    justify-content: center;
+  }
 `;
 
 const FooterContent = styled.div`
+  ${centerBox}
   ${rowBox}
   gap: 1rem;
+  height: 100%;
   align-items: center;
   justify-content: space-between;
   max-width: var(--max-width);
+  width: var(--max-width);
   font-size: var(--font-md);
+
+  @media (max-width: 1024px) {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    text-align: left;
+    justify-content: center;
+  }
 `;
 
 const LogoSection = styled.div`
@@ -61,19 +80,48 @@ const LogoSection = styled.div`
 const Logo = styled.img`
   height: 56px;
   margin-bottom: 2px;
+
+  @media (max-width: 1023px) {
+    height: 32px;
+    margin-bottom: 1px;
+  }
 `;
 
 const InfoAndLinks = styled.div`
   ${columnBox}
   align-items: center;
   gap: 10px;
-  align-items: flex-end;
-  text-align: right;
+  line-height: var(--line-height);
+
+  @media (min-width: 1024px) {
+    align-items: flex-end;
+  }
+
+  @media (max-width: 1023px) {
+    align-items: flex-start;
+    gap: 14px;
+  }
+`;
+
+const LinksSection = styled.div`
+  display: flex;
+  gap: 1.25rem;
+  justify-content: flex-end;
+`;
+
+const FooterLink = styled.a`
+  color: #ffffff;
+  text-decoration: none;
+  font-size: var(--font-lg);
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const InfoSection = styled.div`
-  text-align: right;
   word-break: keep-all;
+  text-align: right;
 
   span {
     display: inline-block;
@@ -83,25 +131,12 @@ const InfoSection = styled.div`
   a {
     color: inherit;
   }
-`;
 
-const LinksSection = styled.div`
-  display: flex;
-  gap: 1.5rem;
-
-  @media (min-width: 768px) {
-    justify-content: flex-end;
-  }
-`;
-
-const FooterLink = styled.a`
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: var(--font-lg);
-
-  &:hover {
-    text-decoration: underline;
+  @media (max-width: 1023px) {
+    ${columnBox}
+    width: 100%;
+    align-items: flex-start;
+    text-align: left;
   }
 `;
 

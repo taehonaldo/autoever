@@ -10,19 +10,26 @@ const Reactions = () => {
       <ReactionItem>
         <Icon src={downloadIcon} alt="Download Icon" />
         <TextContainer>
-          <Title>상품제안서 다운로드</Title>
+          <Title
+            href="https://wiblebiz.kia.com/static/media/proposal.604393960f70e45463b6.pdf"
+            download="위블비즈 상품제안서"
+          >
+            상품제안서 다운로드
+          </Title>
         </TextContainer>
       </ReactionItem>
       <ReactionItem>
         <Icon src={writeIcon} alt="Register Icon" />
         <TextContainer>
-          <Title>상담문의 등록하기</Title>
+          <Title href="/Counsel">상담문의 등록하기</Title>
         </TextContainer>
       </ReactionItem>
       <ReactionItem>
         <Icon src={talkIcon} alt="Chat Icon" />
         <TextContainer>
-          <Title>카톡으로 문의하기</Title>
+          <Title href="https://pf.kakao.com/_xfLxjdb" target="_blank">
+            카톡으로 문의하기
+          </Title>
           <SubText>ID: Wible Biz(위블 비즈)</SubText>
         </TextContainer>
       </ReactionItem>
@@ -82,10 +89,12 @@ const TextContainer = styled.div`
   justify-content: center;
 `;
 
-const Title = styled.div`
+const Title = styled.a`
   font-size: 1rem;
   font-weight: bold;
   color: var(--midnight-900);
+  color: inherit;
+  text-decoration: none;
 `;
 
 const SubText = styled.div`

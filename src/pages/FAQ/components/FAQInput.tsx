@@ -130,10 +130,18 @@ const InputWrapper = styled.div`
   background-color: var(--gray-10);
   margin-bottom: var(--px-md);
   padding: var(--px-md);
+
+  @media (max-width: 743px) {
+    padding: 0;
+  }
 `;
 
 const InputContainer = styled.div`
   position: relative;
+
+  @media (max-width: 743px) {
+    width: 100%;
+  }
 
   > input {
     width: var(--search-bar-width);

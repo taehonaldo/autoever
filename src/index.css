@@ -100,6 +100,7 @@
     --faq-list-a-padding-h: 0;
     --faq-list-a-size: 16px;
     --faq-list-q-padding: 16px 0;
+    --size: 40px;
   }
 }
 @media (min-width: 744px) and (max-width: 1023px) {
@@ -161,6 +162,7 @@
     --faq-list-a-padding-h: 24px;
     --faq-list-a-size: 20px;
     --faq-list-q-padding: 24px 24px;
+    --size: 48px;
   }
 }
 @media (min-width: 1024px) and (max-width: 1439px) {
@@ -222,6 +224,7 @@
     --faq-list-a-padding-h: 20px;
     --faq-list-a-size: 18px;
     --faq-list-q-padding: 24px 32px;
+    --size: 56px;
   }
 }
 @media (min-width: 1440px) {
@@ -283,6 +286,7 @@
     --faq-list-a-padding-h: 24px;
     --faq-list-a-size: 20px;
     --faq-list-q-padding: 32px 40px;
+    --size: 56px;
   }
 }
 
