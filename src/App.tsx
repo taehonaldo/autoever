@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router";
+import { Route, Routes, useLocation } from "react-router";
 import { routes } from "./routes";
 import Header from "./layouts/Header";
 import { columnBox } from "./styles/common.styled";
@@ -10,12 +10,21 @@ import Processes from "./layouts/Processes";
 import Spacing from "./components/ui/Spacing";
 import StoreLink from "./layouts/StoreLink";
 import FAB from "./layouts/FAB";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GlobalPortal } from "./GlobalPortal";
 import Modal from "./components/ui/Modal";
 
 const App = () => {
   const [useFullScreen, setUseFullScreen] = useState<boolean>(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    const currentPageRoute = routes.find((route) =>
+      location.pathname.startsWith(route.path)
+    );
+    if (currentPageRoute) document.title = currentPageRoute.title;
+    else document.title = "unknownPage";
+  }, [location.pathname]);
 
   return (
     <GlobalPortal.Provider>
