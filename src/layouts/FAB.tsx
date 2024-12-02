@@ -12,7 +12,7 @@ const FAB = () => {
       setIsVisible(true);
     } else if (window.scrollY <= 1 && isVisible) {
       setIsAnimatingOut(true);
-      setTimeout(() => setIsVisible(false), 400); // 애니메이션 시간 후 비활성화
+      setTimeout(() => setIsVisible(false), 400);
     }
   };
 
@@ -70,7 +70,7 @@ const ComponentWrapper = styled.div`
 
 const Floating = styled.img<{ $isAnimatingOut: boolean }>`
   position: absolute;
-  z-index: 9999;
+  z-index: 200;
   right: calc(var(--size) / 2);
   bottom: calc(var(--size) / 2);
   background-color: #fff;

@@ -1,0 +1,1 @@
+export type Terms = "STARTADMIN_ADMIN_PRIVACY" | "JOIN_SERVICE_USE";

@@ -1,8 +1,8 @@
-import FAQPage from './pages/FAQ';
+import FAQPage from "./pages/FAQ";
 
 export const routes = [
-	{ path: '/Guide', element: <></> },
-	{ path: '/FAQ', element: <FAQPage /> },
-	{ path: '/News', element: <></> },
-	{ path: '/Counsel', element: <></> },
+  { path: "/Guide", element: <></> },
+  { path: "/FAQ", element: <FAQPage /> },
+  { path: "/News", element: <></> },
+  { path: "/Counsel", element: <></> },
 ];

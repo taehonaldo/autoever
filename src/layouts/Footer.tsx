@@ -1,11 +1,20 @@
 import styled from "styled-components";
 import kiaLogo from "../assets/icons/logo_kia.svg";
 import { centerBox, columnBox, rowBox } from "../styles/common.styled";
-import { forwardRef } from "react";
+import { modalStore } from "../store";
+import NoticeModal from "./NoticeModal";
 
-const Footer = forwardRef<HTMLDivElement>((_, ref) => {
+const Footer = () => {
+  const openModal = modalStore((state) => state.openModal);
+
+  const handleClickModalContent = (
+    type: "STARTADMIN_ADMIN_PRIVACY" | "JOIN_SERVICE_USE"
+  ) => {
+    openModal(<NoticeModal type={type} />, false);
+  };
+
   return (
-    <FooterContainer ref={ref}>
+    <FooterContainer>
       <FooterContent>
         <LogoSection>
           <Logo src={kiaLogo} alt="KIA Logo" />
@@ -13,10 +22,19 @@ const Footer = forwardRef<HTMLDivElement>((_, ref) => {
         </LogoSection>
         <InfoAndLinks>
           <LinksSection>
-            <FooterLink href="/privacy-policy" style={{ fontWeight: "bold" }}>
+            <FooterLink
+              onClick={() =>
+                handleClickModalContent("STARTADMIN_ADMIN_PRIVACY")
+              }
+              style={{ fontWeight: "bold" }}
+            >
               개인정보 처리방침
             </FooterLink>
-            <FooterLink href="/terms-of-service">이용약관</FooterLink>
+            <FooterLink
+              onClick={() => handleClickModalContent("JOIN_SERVICE_USE")}
+            >
+              이용약관
+            </FooterLink>
           </LinksSection>
           <InfoSection>
             <span>
@@ -35,7 +53,7 @@ const Footer = forwardRef<HTMLDivElement>((_, ref) => {
       </FooterContent>
     </FooterContainer>
   );
-});
+};
 
 const FooterContainer = styled.footer`
   height: var(--footer-height);
@@ -68,6 +86,7 @@ const FooterContent = styled.div`
     align-items: flex-start;
     text-align: left;
     justify-content: center;
+    width: 100%;
   }
 `;
 
@@ -109,10 +128,10 @@ const LinksSection = styled.div`
   justify-content: flex-end;
 `;
 
-const FooterLink = styled.a`
+const FooterLink = styled.div`
   color: #ffffff;
-  text-decoration: none;
   font-size: var(--font-lg);
+  cursor: pointer;
 
   &:hover {
     text-decoration: underline;

@@ -116,10 +116,11 @@ const HeaderContainer = styled.header<{ $scrolled: boolean }>`
   top: 0;
   left: 0;
   width: 100%;
+  ${centerBox}
   height: var(--header-height);
   box-shadow: ${(props) =>
     props.$scrolled && "0 4px 32px 0 rgba(0, 0, 0, .08)"};
-  z-index: 2;
+  z-index: 100;
   background-color: #fff;
 `;
 
@@ -128,9 +129,9 @@ const HeaderContents = styled.div`
   justify-content: space-between;
   align-items: center;
   max-width: var(--max-width);
+  margin: 0 auto;
   width: 100%;
   height: 100%;
-  padding: 0 3rem;
 
   @media (max-width: 1024px) {
     padding: 0 1.5rem;
@@ -143,7 +144,7 @@ const Logo = styled.img`
 
 const NavContainer = styled.nav`
   ${rowBox}
-  gap: 2rem;
+  gap: 32px;
   height: 100%;
 
   @media (max-width: 1024px) {
@@ -155,7 +156,7 @@ const NavItem = styled.div<{ $selected: boolean }>`
   ${centerBox}
   height: 100%;
   position: relative;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
   padding: 0 4px;
   cursor: pointer;

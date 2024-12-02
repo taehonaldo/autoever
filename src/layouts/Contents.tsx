@@ -15,6 +15,8 @@ const Contents = ({ children }: ContentsProps) => {
 
 const ContentsWrapper = styled.div`
   position: relative;
+  max-width: 100vw;
+  overflow-x: hidden;
   ${pageBox};
   padding: 0 var(--side-padding) var(--bottom-padding);
 `;

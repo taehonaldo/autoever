@@ -74,6 +74,7 @@ const ProcessesContainer = styled.div`
 const StepWrapper = styled.div`
   ${columnBox}
   text-align: left;
+  padding: 0 24px;
 
   @media (max-width: 1024px) {
     flex-direction: row;
@@ -111,13 +112,13 @@ const StepContent = styled.div`
 const StepTitle = styled.div`
   position: relative;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 18px;
   color: var(--midnight-900);
   margin-bottom: 0.5rem;
 `;
 
 const StepDescription = styled.div`
-  font-size: 14px;
+  font-size: 16px;
   color: var(--gray-700);
 `;
 
